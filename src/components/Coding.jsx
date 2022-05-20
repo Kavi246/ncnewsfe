@@ -3,21 +3,19 @@ import axios from "axios"
 import { Button, Card, CardMedia, Typography, CardContent, CardActions, Grid } from '@mui/material';
 
 
-const Articles = () => {
+const Coding = () => {
 
-    const [ allArticles, setAllArticles ] = useState([]);
-
-    console.log(allArticles)
-
+    const [ codingArticles, setCodingArticles ] = useState([]);
+    
     useEffect(() => {
-        axios.get(`https://nc-news-kpi.herokuapp.com/api/articles`)
+        axios.get(`https://nc-news-kpi.herokuapp.com/api/articles?topic=coding`)
         .then(({ data }) => {
-            setAllArticles(data.articles);
+            setCodingArticles(data.articles);
         })
         .catch(err => console.log(err))
     }, [])
 
-    const renderArticles = allArticles.map((article) => {
+    const renderArticles = codingArticles.map((article) => {
         return (  
         <Grid item xs={4}>
             <Card sx={{ 
@@ -43,7 +41,7 @@ const Articles = () => {
 
     return (
         <div>
-            <h1 style={{color: "#090a12"}}>Articles</h1>
+            <h1 style={{color: "#090a12"}}>Coding</h1>
             <Grid container>
                 {renderArticles}
             </Grid>
@@ -52,4 +50,4 @@ const Articles = () => {
     )
 }
 
-export default Articles;
+export default Coding;

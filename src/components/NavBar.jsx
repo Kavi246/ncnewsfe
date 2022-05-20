@@ -25,21 +25,30 @@ const NavBar = () => {
           }}
           >
           
-          <Button color="inherit">
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Coding
-          </Typography>
-          </Button>
-          <Button color="inherit">
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Football
-          </Typography>
-          </Button>
-          <Button color="inherit">
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Cats
-          </Typography>
-          </Button>
+          <Link to="coding">
+            <Button color="inherit">
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              Coding
+            </Typography>
+            </Button>
+          </Link>
+
+          <Link to="football">
+            <Button color="inherit">
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              Football
+            </Typography>
+            </Button>
+          </Link>
+
+          <Link to="/cooking">
+            <Button color="inherit">
+              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+               Cooking
+              </Typography>
+            </Button>
+          </Link>
+          
         </Toolbar>
       </AppBar>
     </Box>
