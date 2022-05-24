@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios"
-import { Button, Card, CardMedia, Typography, CardContent, CardActions, Grid } from '@mui/material';
-
+import { Button, Card, CardMedia, Typography, CardContent, CardActionArea, Grid } from '@mui/material';
+import { useNavigate } from "react-router-dom";
 
 const Football = () => {
+
+    let navigate = useNavigate();
 
     const [ footballArticles, setFootballArticles ] = useState([]);
     
@@ -15,6 +17,10 @@ const Football = () => {
         .catch(err => console.log(err))
     }, [])
 
+    const navigateToArticle = (id) => {
+        navigate(`/articles/${id}`)  
+    }
+
     const renderArticles = footballArticles.map((article) => {
         return (  
         <Grid item xs={4}>
@@ -24,6 +30,7 @@ const Football = () => {
                 margin: 3,
                 backgroundColor: "white",
                 }}>
+                <CardActionArea onClick={() => navigateToArticle(article.article_id)}>
                 <CardMedia
                 />
                 <CardContent>
@@ -34,6 +41,7 @@ const Football = () => {
                     {article.body.slice(0, 123)+"..."}
                     </Typography>
                 </CardContent>
+                </CardActionArea>
             </Card>
         </Grid>  
         )

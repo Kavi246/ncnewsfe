@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -25,29 +25,29 @@ const NavBar = () => {
           }}
           >
           
-          <Link to="coding">
+          <NavLink to="coding">
             <Button color="inherit">
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               Coding
             </Typography>
             </Button>
-          </Link>
+          </NavLink>
 
-          <Link to="football">
+          <NavLink to="football">
             <Button color="inherit">
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               Football
             </Typography>
             </Button>
-          </Link>
+          </NavLink>
 
-          <Link to="/cooking">
+          <NavLink to="/cooking">
             <Button color="inherit">
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                Cooking
               </Typography>
             </Button>
-          </Link>
+          </NavLink>
           
         </Toolbar>
       </AppBar>

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios"
-import { Button, Card, CardMedia, Typography, CardContent, CardActions, Grid } from '@mui/material';
-
+import { Link, Card, CardMedia, Typography, CardContent, CardActionArea, Grid } from '@mui/material';
+import { useNavigate } from "react-router-dom";
 
 const Cooking = () => {
+
+    let navigate = useNavigate();
 
     const [ cookingArticles, setCookingArticles ] = useState([]);
     
@@ -15,6 +17,10 @@ const Cooking = () => {
         .catch(err => console.log(err))
     }, [])
 
+    const navigateToArticle = (id) => {
+        navigate(`/articles/${id}`)  
+    }
+
     const renderArticles = cookingArticles.map((article) => {
         return (  
         <Grid item xs={4}>
@@ -24,6 +30,11 @@ const Cooking = () => {
                 margin: 3,
                 backgroundColor: "white",
                 }}>
+                <CardActionArea onClick={() => navigateToArticle(article.article_id)}>
+                <Link sx={{
+                    textDecoration: "none",
+                    textDecorationColor: "none",
+            }} to="1">
                 <CardMedia
                 />
                 <CardContent>
@@ -34,6 +45,8 @@ const Cooking = () => {
                     {article.body.slice(0, 123)+"..."}
                     </Typography>
                 </CardContent>
+                </Link>
+                </CardActionArea>
             </Card>
         </Grid>  
         )

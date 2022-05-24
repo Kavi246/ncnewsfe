@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios"
-import { Button, Card, CardMedia, Typography, CardContent, CardActions, Grid } from '@mui/material';
-
+import { Button, Card, CardMedia, Typography, CardContent, CardActionArea, Grid } from '@mui/material';
+import { useNavigate } from "react-router-dom";
 
 const Coding = () => {
 
+    let navigate = useNavigate();
+
     const [ codingArticles, setCodingArticles ] = useState([]);
-    
+
     useEffect(() => {
         axios.get(`https://nc-news-kpi.herokuapp.com/api/articles?topic=coding`)
         .then(({ data }) => {
@@ -14,6 +16,10 @@ const Coding = () => {
         })
         .catch(err => console.log(err))
     }, [])
+
+    const navigateToArticle = (id) => {
+        navigate(`/articles/${id}`)  
+    }
 
     const renderArticles = codingArticles.map((article) => {
         return (  
@@ -24,6 +30,7 @@ const Coding = () => {
                 margin: 3,
                 backgroundColor: "white",
                 }}>
+                <CardActionArea onClick={() => navigateToArticle(article.article_id)}>
                 <CardMedia
                 />
                 <CardContent>
@@ -34,6 +41,7 @@ const Coding = () => {
                     {article.body.slice(0, 123)+"..."}
                     </Typography>
                 </CardContent>
+                </CardActionArea>
             </Card>
         </Grid>  
         )

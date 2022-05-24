@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios"
-import { Button, Card, CardMedia, Typography, CardContent, CardActions, Grid } from '@mui/material';
-
+import { Card, CardMedia, Typography, CardContent, CardActionArea, Grid } from '@mui/material';
+import { useNavigate } from "react-router-dom";
 
 const Articles = () => {
 
-    const [ allArticles, setAllArticles ] = useState([]);
+    let navigate = useNavigate();
 
-    console.log(allArticles)
+    const [ allArticles, setAllArticles ] = useState([]);
 
     useEffect(() => {
         axios.get(`https://nc-news-kpi.herokuapp.com/api/articles`)
@@ -17,6 +17,10 @@ const Articles = () => {
         .catch(err => console.log(err))
     }, [])
 
+    const navigateToArticle = (id) => {
+        navigate(`articles/${id}`)  
+    }
+
     const renderArticles = allArticles.map((article) => {
         return (  
         <Grid item xs={4}>
@@ -25,7 +29,8 @@ const Articles = () => {
                 maxHeight: 200, 
                 margin: 3,
                 backgroundColor: "white",
-                }}>
+            }}>
+                <CardActionArea onClick={() => navigateToArticle(article.article_id)}>
                 <CardMedia
                 />
                 <CardContent>
@@ -36,6 +41,7 @@ const Articles = () => {
                     {article.body.slice(0, 123)+"..."}
                     </Typography>
                 </CardContent>
+                </CardActionArea>
             </Card>
         </Grid>  
         )
